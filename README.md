@@ -2,7 +2,7 @@
 
 [![Go Report Card](https://goreportcard.com/badge/git.iglou.eu/Imported/go-wilcard)](https://goreportcard.com/report/git.iglou.eu/Imported/go-wilcard)
 [![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/git.iglou.eu/Imported/go-wilcard)
-[![Go coverage](https://img.shields.io/badge/coverage-100%25-success)](https://img.shields.io)
+[![Go coverage](https://gocover.io/_badge/git.iglou.eu/Imported/go-wilcard)](https://gocover.io/git.iglou.eu/Imported/go-wilcard)
 [![Apache V2 License](https://img.shields.io/badge/license-Apache%202-blue)](https://opensource.org/licenses/MIT)
 
 >Go-Wilcard is forked from [Minio project](https://github.com/minio/minio)   
