@@ -1,11 +1,11 @@
-# Go-wilcard
+# Go-wildcard
 
-[![Go Report Card](https://goreportcard.com/badge/git.iglou.eu/Imported/go-wilcard)](https://goreportcard.com/report/git.iglou.eu/Imported/go-wilcard)
-[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/git.iglou.eu/Imported/go-wilcard)
-[![Go coverage](https://gocover.io/_badge/git.iglou.eu/Imported/go-wilcard)](https://gocover.io/git.iglou.eu/Imported/go-wilcard)
+[![Go Report Card](https://goreportcard.com/badge/git.iglou.eu/Imported/go-wildcard)](https://goreportcard.com/report/git.iglou.eu/Imported/go-wildcard)
+[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/git.iglou.eu/Imported/go-wildcard)
+[![Go coverage](https://gocover.io/_badge/git.iglou.eu/Imported/go-wildcard)](https://gocover.io/git.iglou.eu/Imported/go-wildcard)
 [![Apache V2 License](https://img.shields.io/badge/license-Apache%202-blue)](https://opensource.org/licenses/MIT)
 
->Go-Wilcard is forked from [Minio project](https://github.com/minio/minio)   
+>Go-wildcard is forked from [Minio project](https://github.com/minio/minio)   
 >https://github.com/minio/minio/tree/master/pkg/wildcard
 
 ## Why
@@ -22,19 +22,19 @@ I know Glob, but most of the time, I only need simple wildcard matching.
 ## How to
 For using GitHub repo
 ```sh
-go mod edit -replace git.iglou.eu/Imported/go-wilcard=github.com/IGLOU-EU/go-wilcard@latest
-go get git.iglou.eu/Imported/go-wilcard@latest
+go mod edit -replace git.iglou.eu/Imported/go-wildcard=github.com/IGLOU-EU/go-wildcard@latest
+go get git.iglou.eu/Imported/go-wildcard@latest
 ```
 
 From selfhosted (I can't warranty the availability)
 ```sh
-go get git.iglou.eu/Imported/go-wilcard@latest
+go get git.iglou.eu/Imported/go-wildcard@latest
 ```
 
 ## Quick Example
 
 This example shows a Go file which pattern matching ...  
-You can use the Github repos to `github.com/IGLOU-EU/go-wilcard`
+You can use the Github repos to `github.com/IGLOU-EU/go-wildcard`
 ```go
 package main
 
@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"log"
 
-	wildcard "git.iglou.eu/Imported/go-wilcard"
+	wildcard "git.iglou.eu/Imported/go-wildcard"
 )
 
 func main() {

@@ -19,7 +19,7 @@ package wildcard_test
 import (
 	"testing"
 
-	wildcard "git.iglou.eu/Imported/go-wilcard"
+	wildcard "git.iglou.eu/Imported/go-wildcard"
 )
 
 // TestMatch - Tests validate the logic of wild card matching.

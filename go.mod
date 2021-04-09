@@ -1,3 +1,3 @@
-module git.iglou.eu/Imported/go-wilcard
+module git.iglou.eu/Imported/go-wildcard
 
 go 1.16
