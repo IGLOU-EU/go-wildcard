@@ -9,8 +9,9 @@
 >https://github.com/minio/minio/tree/master/pkg/wildcard
 
 ## Why
-This part of Minio project is a very cool, fast and light wildcard pattern matching.   
-But using it, need to import the full Minio project inside your own ... And this is a cool, but BIG project.   
+This part of Minio project is a very cool, fast and light wildcard pattern matching.    
+
+Originally the purpose of this fork is to give access to this "lib" under Apache license, without import the entire Minio project ...
 
 Two function are available `MatchSimple` and `Match`   
 - `MatchSimple` only covert `*` usage (he is a bit faster)
@@ -19,10 +20,18 @@ Two function are available `MatchSimple` and `Match`
 I know Regex, but this is a big part, and it is slow (even prepared regex) ...   
 I know Glob, but most of the time, I only need simple wildcard matching.   
 
+From https://github.com/minio/minio/commit/069432566fcfac1f1053677cc925ddafd750730a license change from Apache to GPL
+
 ## How to
-Using GitHub repo
+Using this fork
 ```sh
 go get github.com/IGLOU-EU/go-wildcard@latest
+```
+
+Using Official Minio (GNU Affero General Public License 3.0 or later)
+>From https://github.com/minio/minio/commit/81d5688d5684bd4d93e7bb691af8cf555a20c28c the minio pkg are moved to https://github.com/minio/pkg     
+```sh
+go get github.com/minio/pkg/wildcard@latest
 ```
 
 ## Quick Example
