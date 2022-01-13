@@ -20,21 +20,14 @@ I know Regex, but this is a big part, and it is slow (even prepared regex) ...
 I know Glob, but most of the time, I only need simple wildcard matching.   
 
 ## How to
-For using GitHub repo
+Using GitHub repo
 ```sh
-go mod edit -replace git.iglou.eu/Imported/go-wildcard=github.com/IGLOU-EU/go-wildcard@latest
-go get git.iglou.eu/Imported/go-wildcard@latest
-```
-
-From selfhosted (I can't warranty the availability)
-```sh
-go get git.iglou.eu/Imported/go-wildcard@latest
+go get github.com/IGLOU-EU/go-wildcard@latest
 ```
 
 ## Quick Example
 
 This example shows a Go file which pattern matching ...  
-You can use the Github repos to `github.com/IGLOU-EU/go-wildcard`
 ```go
 package main
 
@@ -42,7 +35,7 @@ import (
 	"fmt"
 	"log"
 
-	wildcard "git.iglou.eu/Imported/go-wildcard"
+	wildcard "github.com/IGLOU-EU/go-wildcard"
 )
 
 func main() {
