@@ -20,7 +20,9 @@ Two function are available `MatchSimple` and `Match`
 I know Regex, but this is a big part, and it is slow (even prepared regex) ...   
 I know Glob, but most of the time, I only need simple wildcard matching.   
 
-From https://github.com/minio/minio/commit/069432566fcfac1f1053677cc925ddafd750730a license change from Apache to GPL
+This library remains under Apache License Version 2.0, but MinIO project is 
+migrated to GNU Affero General Public License 3.0 or later from 
+https://github.com/minio/minio/commit/069432566fcfac1f1053677cc925ddafd750730a
 
 ## How to
 Using this fork
