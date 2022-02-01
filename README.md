@@ -1,8 +1,8 @@
 # Go-wildcard
 
-[![Go Report Card](https://goreportcard.com/badge/git.iglou.eu/Imported/go-wildcard)](https://goreportcard.com/report/git.iglou.eu/Imported/go-wildcard)
-[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/git.iglou.eu/Imported/go-wildcard)
-[![Go coverage](https://gocover.io/_badge/git.iglou.eu/Imported/go-wildcard)](https://gocover.io/git.iglou.eu/Imported/go-wildcard)
+[![Go Report Card](https://goreportcard.com/badge/github.com/IGLOU-EU/go-wildcard)](https://goreportcard.com/report/github.com/IGLOU-EU/go-wildcard)
+[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/github.com/IGLOU-EU/go-wildcard)
+[![Go coverage](https://gocover.io/_badge/github.com/IGLOU-EU/go-wildcard)](https://gocover.io/github.com/IGLOU-EU/go-wildcard)
 [![Apache V2 License](https://img.shields.io/badge/license-Apache%202-blue)](https://opensource.org/licenses/MIT)
 
 >Go-wildcard is forked from [Minio project](https://github.com/minio/minio)   
