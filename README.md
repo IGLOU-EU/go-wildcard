@@ -25,6 +25,8 @@ migrated to GNU Affero General Public License 3.0 or later from
 https://github.com/minio/minio/commit/069432566fcfac1f1053677cc925ddafd750730a
 
 ## How to
+>⚠️ WARNING: Unlike the GNU "libc", this library has no equivalent to "FNM_FILE_NAME". To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Glob
+
 Using this fork
 ```sh
 go get github.com/IGLOU-EU/go-wildcard@latest
