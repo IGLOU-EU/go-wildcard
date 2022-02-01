@@ -44,7 +44,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	wildcard "github.com/IGLOU-EU/go-wildcard"
 )
