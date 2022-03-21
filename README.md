@@ -9,15 +9,15 @@
 >https://github.com/minio/minio/tree/master/pkg/wildcard
 
 ## Why
-This part of Minio project is a very cool, fast and light wildcard pattern matching.    
+This part of Minio project, a very cool, fast and light wildcard pattern matching.    
 
-Originally the purpose of this fork is to give access to this "lib" under Apache license, without import the entire Minio project ...
+Originally the purpose of this fork is to give access to this "lib" under Apache license, without importing the entire Minio project ...
 
 Two function are available `MatchSimple` and `Match`   
-- `MatchSimple` only covert `*` usage (he is a bit faster)
+- `MatchSimple` only covert `*` usage (which is faster than `Match`)
 - `Match` support full wildcard matching, `*` and `?`
 
-I know Regex, but this is a big part, and it is slow (even prepared regex) ...   
+I know Regex, but they are much more complex, and slower (even prepared regex) ...   
 I know Glob, but most of the time, I only need simple wildcard matching.   
 
 This library remains under Apache License Version 2.0, but MinIO project is 
@@ -25,7 +25,7 @@ migrated to GNU Affero General Public License 3.0 or later from
 https://github.com/minio/minio/commit/069432566fcfac1f1053677cc925ddafd750730a
 
 ## How to
->⚠️ WARNING: Unlike the GNU "libc", this library has no equivalent to "FNM_FILE_NAME". To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Glob
+>⚠️ WARNING: Unlike the GNU "libc", this library have no equivalent to "FNM_FILE_NAME". To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Glob
 
 Using this fork
 ```sh
@@ -40,7 +40,7 @@ go get github.com/minio/pkg/wildcard@latest
 
 ## Quick Example
 
-This example shows a Go file which pattern matching ...  
+This example shows a Go file with pattern matching ...  
 ```go
 package main
 
