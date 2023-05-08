@@ -8,9 +8,35 @@
 
 package wildcard
 
-// Match returns true if the pattern matches the s string.
-// The pattern can contain the wildcard characters '?' '.' and '*'.
-func Match(pattern, s string) bool {
+import "strings"
+
+// Flags type is used to specify matching options for the Match function
+type Flags uint8
+
+// Constants definition for matching options
+const (
+	FLAG_NONE     = 1 << iota // No special behavior
+	FLAG_CASEFOLD             // Case-insensitive match
+)
+
+// Match function checks if the given string s matches the wildcard pattern
+// with specified matching options (Flags).
+//
+// Supported wildcards:
+// `*` match zero or more characters
+// `?` match zero or one character
+// `.` match exactly one character
+//
+// Supported matching options:
+// FLAG_NONE     - No special behavior
+// FLAG_CASEFOLD - Case-insensitive match
+func Match(pattern, s string, option Flags) bool {
+	// If FLAG_CASEFOLD is set, convert both pattern and string to lowercase
+	if option&FLAG_CASEFOLD != 0 {
+		s = strings.ToLower(s)
+		pattern = strings.ToLower(pattern)
+	}
+
 	if pattern == "" {
 		return s == pattern
 	}
