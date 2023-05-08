@@ -25,8 +25,28 @@ func Match(pattern, s string) bool {
 	star := -1
 
 Loop:
-	if sIndex < sLen {
-		if patternIndex >= patternLen {
+	if sIndex >= sLen {
+		goto checkPattern
+	}
+
+	if patternIndex >= patternLen {
+		if star != -1 {
+			patternIndex = star + 1
+			lastStar++
+			sIndex = lastStar
+			goto Loop
+		}
+		return false
+	}
+	switch pattern[patternIndex] {
+	case '?', '.':
+	case '*':
+		star = patternIndex
+		lastStar = sIndex
+		patternIndex++
+		goto Loop
+	default:
+		if pattern[patternIndex] != s[sIndex] {
 			if star != -1 {
 				patternIndex = star + 1
 				lastStar++
@@ -34,33 +54,12 @@ Loop:
 				goto Loop
 			}
 			return false
-		} else {
-			switch pattern[patternIndex] {
-			case '?', '.':
-				goto increment
-			case '*':
-				star = patternIndex
-				lastStar = sIndex
-				patternIndex++
-				goto Loop
-			default:
-				if pattern[patternIndex] != s[sIndex] {
-					if star != -1 {
-						patternIndex = star + 1
-						lastStar++
-						sIndex = lastStar
-						goto Loop
-					}
-					return false
-				}
-			}
-
-		increment:
-			patternIndex++
-			sIndex++
-			goto Loop
 		}
 	}
+
+	patternIndex++
+	sIndex++
+	goto Loop
 
 checkPattern:
 	if patternIndex < patternLen {
