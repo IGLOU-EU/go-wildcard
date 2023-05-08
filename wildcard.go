@@ -18,6 +18,10 @@ func Match(pattern, s string) bool {
 		return true
 	}
 
+	return match(pattern, s)
+}
+
+func match(pattern, s string) bool {
 	var lastErotemeByte byte
 	var patternIndex, sIndex, lastStar, lastEroteme int
 	patternLen := len(pattern)
