@@ -19,10 +19,12 @@ func Match(pattern, s string) bool {
 		return true
 	}
 
-	var patternIndex, sIndex, lastStar int
+	var lastErotemeByte byte
+	var patternIndex, sIndex, lastStar, lastEroteme int
 	patternLen := len(pattern)
 	sLen := len(s)
 	star := -1
+	eroteme := -1
 
 Loop:
 	if sIndex >= sLen {
@@ -39,7 +41,12 @@ Loop:
 		return false
 	}
 	switch pattern[patternIndex] {
-	case '?', '.':
+	case '.':
+		// It matches any single character. So, we don't need to check anything.
+	case '?':
+		eroteme = patternIndex
+		lastEroteme = sIndex
+		lastErotemeByte = s[sIndex]
 	case '*':
 		star = patternIndex
 		lastStar = sIndex
@@ -47,13 +54,25 @@ Loop:
 		goto Loop
 	default:
 		if pattern[patternIndex] != s[sIndex] {
+			if eroteme != -1 {
+				patternIndex = eroteme + 1
+				sIndex = lastEroteme
+				eroteme = -1
+				goto Loop
+			}
+
 			if star != -1 {
 				patternIndex = star + 1
 				lastStar++
 				sIndex = lastStar
 				goto Loop
 			}
+
 			return false
+		}
+
+		if eroteme != -1 && lastErotemeByte != s[sIndex] {
+			eroteme = -1
 		}
 	}
 

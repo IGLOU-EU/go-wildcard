@@ -71,6 +71,7 @@ func TestMatch(t *testing.T) {
 		{"match a string with a ? at the beginning", "?atch a string with a ? at the beginning", true},
 		{"match a string with two ?", "match a string with two ??", true},
 		{"match a optional char with a ?", "match a optional? char with a ?", true},
+		{"match a optional   char with a ?", "match a optional?   char with a ?", true},
 		{"do not match a string with extra and a ?", "do not match ? string with extra and a ? like this", false},
 
 		{"match a string with a .", "match . string with a .", true},
