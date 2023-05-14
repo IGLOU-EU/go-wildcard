@@ -90,3 +90,11 @@ func TestMatch(t *testing.T) {
 		}
 	}
 }
+
+func FuzzMatch(f *testing.F) {
+	f.Fuzz(func(t *testing.T, s string) {
+		if !wildcard.Match(s, s) {
+			t.Fatalf("%s does not match %s", s, s)
+		}
+	})
+}
