@@ -65,7 +65,17 @@ func BenchmarkMatch(b *testing.B) {
 	for i, t := range TestSet {
 		b.Run(fmt.Sprint(i), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				wildcard.Match(t.pattern, t.name)
+				wildcard.Match(t.pattern, t.name, wildcard.FLAG_NONE)
+			}
+		})
+	}
+}
+
+func BenchmarkMatchCasefold(b *testing.B) {
+	for i, t := range TestSet {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				wildcard.Match(t.pattern, t.name, wildcard.FLAG_CASEFOLD)
 			}
 		})
 	}
