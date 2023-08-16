@@ -6,9 +6,9 @@
 
 ## 💡 Why
 The purpose of this library is to provide a simple and fast wildcard pattern matching.
-Regex are much more complex, and slower (even prepared regex)... and the filepath.Match is not enough flexible.
+Regex are much more complex, and slower (even prepared regex)... and the filepath.Match is file-name-centric.
 
-So, this library is a very simple, very fast and a more flexible alternative to regex and filepath.Match. 
+So, this library is a very simple, very fast, a more flexible alternative to regex and not tied to filename semantics filepath.Match. 
 There are no dependencies and is alocation free. 🥳
 
 ## 🧰 Features
