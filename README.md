@@ -28,7 +28,7 @@ package main
 import (
 	"fmt"
 
-	wildcard "github.com/IGLOU-EU/go-wildcard"
+	"github.com/IGLOU-EU/go-wildcard/v2"
 )
 
 func main() {

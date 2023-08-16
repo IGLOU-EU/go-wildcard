@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"testing"
 
-	wildcard "github.com/IGLOU-EU/go-wildcard"
+	"github.com/IGLOU-EU/go-wildcard/v2"
 )
 
 var TestSet = []struct {
