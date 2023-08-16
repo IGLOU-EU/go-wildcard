@@ -1,7 +1,7 @@
 # Go-wildcard
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/IGLOU-EU/go-wildcard)](https://goreportcard.com/report/github.com/IGLOU-EU/go-wildcard)
-[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/github.com/IGLOU-EU/go-wildcard)
+[![Go Report Card](https://goreportcard.com/badge/github.com/IGLOU-EU/go-wildcard/v2)](https://goreportcard.com/report/github.com/IGLOU-EU/go-wildcard/v2)
+[![Go Reference](https://img.shields.io/badge/api-reference-blue)](https://pkg.go.dev/github.com/IGLOU-EU/go-wildcard/v2)
 [![BSD 3 Clause ](https://img.shields.io/badge/license-BSD_3_Clause-blue)](https://opensource.org/license/bsd-3-clause/)
 
 ## 💡 Why
