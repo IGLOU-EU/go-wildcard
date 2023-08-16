@@ -6,9 +6,9 @@
 
 ## 💡 Why
 The purpose of this library is to provide a simple and fast wildcard pattern matching.
-Regex are much more complex, and slower (even prepared regex)... and the filepath.Match is file-name-centric.
+Regex are much more complex and slower (even prepared regex)... and the filepath.Match is file-name-centric.
 
-So, this library is a very simple, very fast, a more flexible alternative to regex and not tied to filename semantics filepath.Match. 
+So, this library is a very fast and very simple alternative to regex and not tied to filename semantics unlike filepath.Match. 
 There are no dependencies and is alocation free. 🥳
 
 ## 🧰 Features
@@ -56,44 +56,46 @@ The tested fonctions are:
 ```bash
 goos: linux
 goarch: amd64
-pkg: github.com/IGLOU-EU/go-wildcard
-cpu: AMD Ryzen 7 PRO 6850U with Radeon Graphics     
-BenchmarkRegex/0-16              1000000          1322 ns/op         765 B/op          9 allocs/op
-BenchmarkRegex/1-16               134851         10461 ns/op        6592 B/op         26 allocs/op
-BenchmarkRegex/2-16              5871756           280.8 ns/op       160 B/op          2 allocs/op
-BenchmarkRegex/3-16               108092         12096 ns/op        6647 B/op         26 allocs/op
-BenchmarkRegex/4-16                92070         13924 ns/op        7436 B/op         38 allocs/op
-BenchmarkRegex/5-16              4702372           277.6 ns/op       160 B/op          2 allocs/op
+pkg: github.com/IGLOU-EU/go-wildcard/v2
+cpu: AMD Ryzen 7 PRO 6850U with Radeon Graphics  
 
-BenchmarkFilepath/0-16          548771120            1.836 ns/op           0 B/op          0 allocs/op
-BenchmarkFilepath/1-16           9451810           117.8 ns/op         0 B/op          0 allocs/op
-BenchmarkFilepath/2-16          151409767            7.853 ns/op           0 B/op          0 allocs/op
-BenchmarkFilepath/3-16           8656650           143.8 ns/op         0 B/op          0 allocs/op
-BenchmarkFilepath/4-16          67589983            18.33 ns/op        0 B/op          0 allocs/op
-BenchmarkFilepath/5-16           4805623           240.3 ns/op         0 B/op          0 allocs/op
+BenchmarkRegex/0-16              2062886           613.6 ns/op       767 B/op          9 allocs/op
+BenchmarkRegex/1-16               240769          4891 ns/op        6592 B/op         26 allocs/op
+BenchmarkRegex/2-16             11182353           106.1 ns/op       160 B/op          2 allocs/op
+BenchmarkRegex/3-16               206820          5119 ns/op        6657 B/op         26 allocs/op
+BenchmarkRegex/4-16               209696          5202 ns/op        7464 B/op         38 allocs/op
+BenchmarkRegex/5-16             11510461           106.2 ns/op       160 B/op          2 allocs/op
 
-BenchmarkOldMatchSimple/0-16    1000000000           0.4971 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatchSimple/1-16     4738023           292.5 ns/op       176 B/op          1 allocs/op
-BenchmarkOldMatchSimple/2-16    1000000000           0.9130 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatchSimple/3-16     1688683           763.8 ns/op       352 B/op          2 allocs/op
-BenchmarkOldMatchSimple/4-16     2242758           514.0 ns/op       336 B/op          2 allocs/op
-BenchmarkOldMatchSimple/5-16    10435084           110.7 ns/op         0 B/op          0 allocs/op
+BenchmarkFilepath/0-16          544894772            2.211 ns/op           0 B/op          0 allocs/op
+BenchmarkFilepath/1-16           7447402           152.4 ns/op         0 B/op          0 allocs/op
+BenchmarkFilepath/2-16          150307264            8.100 ns/op           0 B/op          0 allocs/op
+BenchmarkFilepath/3-16           7204717           160.5 ns/op         0 B/op          0 allocs/op
+BenchmarkFilepath/4-16          51796936            22.25 ns/op        0 B/op          0 allocs/op
+BenchmarkFilepath/5-16           4137405           281.4 ns/op         0 B/op          0 allocs/op
 
-BenchmarkOldMatch/0-16          1000000000           0.4568 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatch/1-16           5300286           286.8 ns/op       176 B/op          1 allocs/op
-BenchmarkOldMatch/2-16          1000000000           0.7127 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatch/3-16           1608777           772.9 ns/op       352 B/op          2 allocs/op
-BenchmarkOldMatch/4-16           2283015           548.9 ns/op       336 B/op          2 allocs/op
-BenchmarkOldMatch/5-16          10425933           113.0 ns/op         0 B/op          0 allocs/op
+BenchmarkOldMatchSimple/0-16    1000000000           0.5077 ns/op          0 B/op          0 allocs/op
+BenchmarkOldMatchSimple/1-16    10006898           140.4 ns/op       176 B/op          1 allocs/op
+BenchmarkOldMatchSimple/2-16    1000000000           0.7710 ns/op          0 B/op          0 allocs/op
+BenchmarkOldMatchSimple/3-16     3102465           335.7 ns/op       352 B/op          2 allocs/op
+BenchmarkOldMatchSimple/4-16     4941943           256.8 ns/op       336 B/op          2 allocs/op
+BenchmarkOldMatchSimple/5-16     9047443           127.3 ns/op         0 B/op          0 allocs/op
 
-BenchmarkMatch/0-16             654065395            1.774 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/1-16             352847413            2.973 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/2-16             652602918            1.822 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/3-16             412494770            2.940 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/4-16             197380323            5.447 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/5-16             39741439            27.96 ns/op        0 B/op          0 allocs/op
+BenchmarkOldMatch/0-16          1000000000           0.5054 ns/op          0 B/op          0 allocs/op
+BenchmarkOldMatch/1-16           9655593           142.0 ns/op       176 B/op          1 allocs/op
+BenchmarkOldMatch/2-16          1000000000           0.9732 ns/op          0 B/op          0 allocs/op
+BenchmarkOldMatch/3-16           3008078           334.0 ns/op       352 B/op          2 allocs/op
+BenchmarkOldMatch/4-16           4771064           251.4 ns/op       336 B/op          2 allocs/op
+BenchmarkOldMatch/5-16           9545247           122.7 ns/op         0 B/op          0 allocs/op
+
+BenchmarkMatch/0-16             1000000000           0.5314 ns/op          0 B/op          0 allocs/op
+BenchmarkMatch/1-16             323842944            3.578 ns/op           0 B/op          0 allocs/op
+BenchmarkMatch/2-16             924416408            1.201 ns/op           0 B/op          0 allocs/op
+BenchmarkMatch/3-16             477003219            2.432 ns/op           0 B/op          0 allocs/op
+BenchmarkMatch/4-16             125328649            9.016 ns/op           0 B/op          0 allocs/op
+BenchmarkMatch/5-16             22776087            52.13 ns/op        0 B/op          0 allocs/op
+
 PASS
-ok      github.com/IGLOU-EU/go-wildcard 48.707s
+ok      github.com/IGLOU-EU/go-wildcard/v2  39.328s
 ```
 
 ## 🕰 History 
