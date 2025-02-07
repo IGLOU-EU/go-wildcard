@@ -6,21 +6,19 @@
  * see LICENSE.md for more details.
  */
 
-package wildcard_test
+package source
 
 import (
 	"testing"
-
-	"github.com/IGLOU-EU/go-wildcard/v2"
 )
 
-// TestMatch - Tests validate the logic of wild card matching.
-// `Match` supports '*' and '?' wildcards.
-// Sample usage: In resource matching for bucket policy validation.
+// TestMatch validates the logic of wild card matching,
+// it need to support '*', '?' and '.' and only validate for byte comparison
+// over string, not rune or grapheme cluster
 func TestMatch(t *testing.T) {
 	cases := []struct {
-		s       string
-		pattern string
+		s       __ARG_TYPE__
+		pattern __ARG_TYPE__
 		result  bool
 	}{
 		{"", "", true},
@@ -84,7 +82,7 @@ func TestMatch(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		result := wildcard.Match(c.pattern, c.s)
+		result := __FUNC_NAME__(c.pattern, c.s)
 		if c.result != result {
 			t.Errorf("Test %d: Expected `%v`, found `%v`; With Pattern: `%s` and String: `%s`", i+1, c.result, result, c.pattern, c.s)
 		}
@@ -93,7 +91,7 @@ func TestMatch(t *testing.T) {
 
 func FuzzMatch(f *testing.F) {
 	f.Fuzz(func(t *testing.T, s string) {
-		if !wildcard.Match(s, s) {
+		if !__FUNC_NAME__(__ARG_TYPE__(s), __ARG_TYPE__(s)) {
 			t.Fatalf("%s does not match %s", s, s)
 		}
 	})
