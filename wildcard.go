@@ -6,6 +6,8 @@
  * see LICENSE.md for more details.
  */
 
+//go:generate go run cmd/build/build.go
+
 package wildcard
 
 import "bytes"
