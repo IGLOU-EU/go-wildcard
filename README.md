@@ -35,7 +35,10 @@ func main() {
     str := "daaadabadmanda"
     pattern := "?a*da*d.?*"
 
-    result = wildcard.Match(pattern, str)
+    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '." with rune multiple byte representation
+    resultMFB = wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid convertion (bad example here)
+    resultMBR = wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
+
 	fmt.Println(str, pattern, result)
 }
 ```
@@ -43,60 +46,27 @@ func main() {
 ## 🛸 Benchmark
 The benchmark is done with the following command:
 ```bash
-go test -benchmem -run=^$ -bench .
+go test -benchmem -bench . github.com/IGLOU-EU/go-wildcard/v2/benchmark
 ```
 
-The tested fonctions are:
-- regexp.MatchString(t.pattern, t.name)
-- filepath.Match(t.pattern, t.name)
-- oldMatchSimple(t.pattern, t.name) `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
-- oldMatch(t.pattern, t.name) `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
-- Match(t.pattern, t.name) `The actual implementation`
-
-```bash
+```yml
 goos: linux
 goarch: amd64
 pkg: github.com/IGLOU-EU/go-wildcard/v2
 cpu: AMD Ryzen 7 PRO 6850U with Radeon Graphics  
-
-BenchmarkRegex/0-16              2062886           613.6 ns/op       767 B/op          9 allocs/op
-BenchmarkRegex/1-16               240769          4891 ns/op        6592 B/op         26 allocs/op
-BenchmarkRegex/2-16             11182353           106.1 ns/op       160 B/op          2 allocs/op
-BenchmarkRegex/3-16               206820          5119 ns/op        6657 B/op         26 allocs/op
-BenchmarkRegex/4-16               209696          5202 ns/op        7464 B/op         38 allocs/op
-BenchmarkRegex/5-16             11510461           106.2 ns/op       160 B/op          2 allocs/op
-
-BenchmarkFilepath/0-16          544894772            2.211 ns/op           0 B/op          0 allocs/op
-BenchmarkFilepath/1-16           7447402           152.4 ns/op         0 B/op          0 allocs/op
-BenchmarkFilepath/2-16          150307264            8.100 ns/op           0 B/op          0 allocs/op
-BenchmarkFilepath/3-16           7204717           160.5 ns/op         0 B/op          0 allocs/op
-BenchmarkFilepath/4-16          51796936            22.25 ns/op        0 B/op          0 allocs/op
-BenchmarkFilepath/5-16           4137405           281.4 ns/op         0 B/op          0 allocs/op
-
-BenchmarkOldMatchSimple/0-16    1000000000           0.5077 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatchSimple/1-16    10006898           140.4 ns/op       176 B/op          1 allocs/op
-BenchmarkOldMatchSimple/2-16    1000000000           0.7710 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatchSimple/3-16     3102465           335.7 ns/op       352 B/op          2 allocs/op
-BenchmarkOldMatchSimple/4-16     4941943           256.8 ns/op       336 B/op          2 allocs/op
-BenchmarkOldMatchSimple/5-16     9047443           127.3 ns/op         0 B/op          0 allocs/op
-
-BenchmarkOldMatch/0-16          1000000000           0.5054 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatch/1-16           9655593           142.0 ns/op       176 B/op          1 allocs/op
-BenchmarkOldMatch/2-16          1000000000           0.9732 ns/op          0 B/op          0 allocs/op
-BenchmarkOldMatch/3-16           3008078           334.0 ns/op       352 B/op          2 allocs/op
-BenchmarkOldMatch/4-16           4771064           251.4 ns/op       336 B/op          2 allocs/op
-BenchmarkOldMatch/5-16           9545247           122.7 ns/op         0 B/op          0 allocs/op
-
-BenchmarkMatch/0-16             1000000000           0.5314 ns/op          0 B/op          0 allocs/op
-BenchmarkMatch/1-16             323842944            3.578 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/2-16             924416408            1.201 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/3-16             477003219            2.432 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/4-16             125328649            9.016 ns/op           0 B/op          0 allocs/op
-BenchmarkMatch/5-16             22776087            52.13 ns/op        0 B/op          0 allocs/op
-
-PASS
-ok      github.com/IGLOU-EU/go-wildcard/v2  39.328s
 ```
+
+The tested fonctions are:
+- regexp.MatchString
+- filepath.Match
+- oldMatchSimple `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
+- oldMatch `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
+- Match `From string with byte comparison`
+- MatchByRune `From string with rune comparison`
+- MatchFromByte `From byte slice with byte comparison`
+
+![time bench](./assets/graph_time.png)
+![allocs bench](./assets/graph_allocs.png)
 
 ## 🕰 History 
 Originally, this library was a fork from the Minio project.
