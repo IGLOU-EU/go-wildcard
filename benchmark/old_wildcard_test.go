@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package wildcard_test
+package wildcard_bench
 
 // MatchSimple - finds whether the text matches/satisfies the pattern string.
 // supports only '*' wildcard in the pattern.
