@@ -8,13 +8,21 @@
 
 //go:generate go run cmd/build/build.go
 
+// Package wildcard reports whether a string matches a wildcard pattern.
+//
+// Three operators are supported:
+//   - '*' matches zero or more characters
+//   - '?' matches zero or one character
+//   - '.' matches exactly one character
+//
+// Any other character must match itself.
 package wildcard
 
 import "bytes"
 
-// Match returns true if the pattern matches the string s.
-// It uses byte comparison rather than rune or grapheme cluster comparison.
-// For matching complex Unicode, only the "*" wildcard or exact equality is supported.
+// Match reports whether s matches pattern, comparing byte by byte and
+// without allocating. Against multi-byte UTF-8 the operators apply to
+// bytes, not whole characters; use MatchByRune when that matters.
 func Match(pattern, s string) bool {
 	if pattern == "" {
 		return s == pattern
@@ -26,9 +34,9 @@ func Match(pattern, s string) bool {
 	return matchByString(pattern, s)
 }
 
-// MatchByRune returns true if the pattern matches the string s.
-// It supports complex Unicode matching with wildcards such as "*", "?", and ".".
-// Note that it incurs allocation and more CPU usage.
+// MatchByRune reports whether s matches pattern, comparing rune by rune,
+// so the operators apply to whole Unicode code points. Converting pattern
+// and s to runes allocates; prefer Match when byte semantics are enough.
 func MatchByRune(pattern, s string) bool {
 	if pattern == "" {
 		return s == pattern
@@ -40,8 +48,8 @@ func MatchByRune(pattern, s string) bool {
 	return matchByRunes([]rune(pattern), []rune(s))
 }
 
-// MatchFromByte returns true if the pattern matches the byte slice s.
-// Similar to Match but operates on byte slices to avoid conversions/alloc.
+// MatchFromByte is Match for byte slices: it reports whether s matches
+// pattern, with the same byte-wise semantics and without allocation.
 func MatchFromByte(pattern, s []byte) bool {
 	if len(pattern) == 0 {
 		return len(s) == 0

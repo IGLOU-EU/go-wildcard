@@ -21,7 +21,7 @@ These are the supported pattern operators:
 >⚠️ WARNING: Unlike the GNU "libc", this library have no equivalent to "FNM_FILE_NAME". 
 >To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Match
 
-It is very simple to use this library: import it and call the Match function.
+It is very simple to use this library: import it and call the Match function — or one of its variants, as shown below.
 ```go
 package main
 
@@ -32,12 +32,12 @@ import (
 )
 
 func main() {
-    str := "daaadabadmanda"
-    pattern := "?a*da*d.?*"
+	str := "daaadabadmanda"
+	pattern := "?a*da*d.?*"
 
-    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '.' with multi-byte runes
-    resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid string conversion
-    resultMBR := wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
+	resultM := wildcard.Match(pattern, str) // Fastest, compares byte by byte
+	resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Like Match, for byte slices. Skips the string conversion
+	resultMBR := wildcard.MatchByRune(pattern, str) // Compares rune by rune. Slower and the []rune conversion allocates
 
 	fmt.Println(str, pattern, resultM, resultMFB, resultMBR)
 }
