@@ -63,6 +63,7 @@ func TestMatch(t *testing.T) {
 		{"match a string with a *", "match a string *", true},
 		{"match a string with a * at the beginning", "* at the beginning", true},
 		{"match a string with two *", "match * with *", true},
+		{"do not match a string with a * at the beginning", "* do not match", false},
 		{"do not match a string with extra and a *", "do not match a string * with more", false},
 
 		{"match a string with a ?", "match ? string with a ?", true},

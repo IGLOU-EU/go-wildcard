@@ -46,7 +46,7 @@ func MatchFromByte(pattern, s []byte) bool {
 	if len(pattern) == 0 {
 		return len(s) == 0
 	}
-	if pattern[0] == '*' || bytes.Equal(pattern, s) {
+	if string(pattern) == "*" || bytes.Equal(pattern, s) {
 		return true
 	}
 
