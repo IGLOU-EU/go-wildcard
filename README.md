@@ -8,11 +8,11 @@
 The purpose of this library is to provide a simple and fast wildcard pattern matching.
 Regex are much more complex and slower (even prepared regex)... and the filepath.Match is file-name-centric.
 
-So, this library is a very fast and very simple alternative to regex and not tied to filename semantics unlike filepath.Match. 
-There are no dependencies and is alocation free. 🥳
+So, this library is a very fast and very simple alternative to regex and not tied to filename semantics unlike filepath.Match.
+There are no dependencies and is allocation-free. 🥳
 
 ## 🧰 Features
-There are the supported patterns operators:
+These are the supported pattern operators:
 - `*` match zero or more characters
 - `?` match zero or one character
 - `.` match exactly one character
@@ -21,7 +21,7 @@ There are the supported patterns operators:
 >⚠️ WARNING: Unlike the GNU "libc", this library have no equivalent to "FNM_FILE_NAME". 
 >To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Match
 
-There is super simple to use this library, you just have to import it and use the Match function.
+It is very simple to use this library: import it and call the Match function.
 ```go
 package main
 
@@ -35,11 +35,11 @@ func main() {
     str := "daaadabadmanda"
     pattern := "?a*da*d.?*"
 
-    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '." with rune multiple byte representation
-    resultMFB = wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid convertion (bad example here)
-    resultMBR = wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
+    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '.' with multi-byte runes
+    resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid string conversion
+    resultMBR := wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
 
-	fmt.Println(str, pattern, result)
+	fmt.Println(str, pattern, resultM, resultMFB, resultMBR)
 }
 ```
 
@@ -56,7 +56,7 @@ pkg: github.com/IGLOU-EU/go-wildcard/v2
 cpu: AMD Ryzen 7 PRO 6850U with Radeon Graphics  
 ```
 
-The tested fonctions are:
+The tested functions are:
 - regexp.MatchString
 - filepath.Match
 - oldMatchSimple `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
