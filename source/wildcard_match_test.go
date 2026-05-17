@@ -61,6 +61,7 @@ func TestMatch(t *testing.T) {
 		{"🌅☕️📰👨‍💼👩‍💼🏢🖥️💼💻📊📈📉👨‍👩‍👧‍👦🍝🕰️💪🏋️‍♂️🏋️‍♀️🏋️‍♂️💼🚴‍♂️🚴‍♀️🚴‍♂️🛀💤🌃", "🦌🐇🦡🐿️🌲🌳🏰🌳🌲🌞🌧️❄️🌬️⛈️🔥🎄🎅🎁🎉🎊🥳👨‍👩‍👧‍👦💏👪💖👩‍💼🛀", false},
 
 		{"match a string with a *", "match a string *", true},
+		{"bar", "*foo", false},
 		{"match a string with a * at the beginning", "* at the beginning", true},
 		{"match a string with two *", "match * with *", true},
 		{"do not match a string with extra and a *", "do not match a string * with more", false},

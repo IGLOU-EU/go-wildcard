@@ -9,7 +9,7 @@ The purpose of this library is to provide a simple and fast wildcard pattern mat
 Regex are much more complex and slower (even prepared regex)... and the filepath.Match is file-name-centric.
 
 So, this library is a very fast and very simple alternative to regex and not tied to filename semantics unlike filepath.Match.
-There are no dependencies and is allocation-free. 🥳
+There are no dependencies. `Match` and `MatchFromByte` avoid heap allocation; `MatchByRune` allocates when converting to runes. 🥳
 
 ## 🧰 Features
 These are the supported pattern operators:
@@ -21,7 +21,14 @@ These are the supported pattern operators:
 >⚠️ WARNING: Unlike the GNU "libc", this library have no equivalent to "FNM_FILE_NAME". 
 >To do this you can use "path/filepath" https://pkg.go.dev/path/filepath#Match
 
-It is very simple to use this library: import it and call the Match function.
+Choose an entry point:
+
+| Function | Input | Notes |
+|----------|-------|-------|
+| `Match` | `string` | Fastest; byte-wise `*`, `?`, `.` (ASCII-safe patterns) |
+| `MatchFromByte` | `[]byte` | Same semantics as `Match` without string conversion |
+| `MatchByRune` | `string` | Supports UTF-8 runes; allocates |
+
 ```go
 package main
 
@@ -32,12 +39,12 @@ import (
 )
 
 func main() {
-    str := "daaadabadmanda"
-    pattern := "?a*da*d.?*"
+	str := "daaadabadmanda"
+	pattern := "?a*da*d.?*"
 
-    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '.' with multi-byte runes
-    resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid string conversion
-    resultMBR := wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
+	resultM := wildcard.Match(pattern, str)
+	resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str))
+	resultMBR := wildcard.MatchByRune(pattern, str)
 
 	fmt.Println(str, pattern, resultM, resultMFB, resultMBR)
 }

@@ -41,12 +41,12 @@ func MatchByRune(pattern, s string) bool {
 }
 
 // MatchFromByte returns true if the pattern matches the byte slice s.
-// Similar to Match but operates on byte slices to avoid conversions/alloc.
+// It has the same wildcard semantics as Match and avoids string conversions.
 func MatchFromByte(pattern, s []byte) bool {
 	if len(pattern) == 0 {
 		return len(s) == 0
 	}
-	if pattern[0] == '*' || bytes.Equal(pattern, s) {
+	if (len(pattern) == 1 && pattern[0] == '*') || bytes.Equal(pattern, s) {
 		return true
 	}
 
