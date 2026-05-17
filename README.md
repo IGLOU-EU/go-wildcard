@@ -12,10 +12,13 @@ So, this library is a very fast and very simple alternative to regex and not tie
 There are no dependencies and is allocation-free. 🥳
 
 ## 🧰 Features
-These are the supported pattern operators:
+These pattern operators are supported by **Match**, **MatchFromByte**, and **MatchByRune**:
 - `*` match zero or more characters
 - `?` match zero or one character
 - `.` match exactly one character
+
+**Match** and **MatchFromByte** compare raw bytes (fast; `?` and `.` each consume one byte).
+**MatchByRune** compares Unicode runes (use when patterns must align with multi-byte characters).
 
 ## 🧐 How to
 >⚠️ WARNING: Unlike the GNU "libc", this library have no equivalent to "FNM_FILE_NAME". 
@@ -35,9 +38,9 @@ func main() {
     str := "daaadabadmanda"
     pattern := "?a*da*d.?*"
 
-    resultM := wildcard.Match(pattern, str) // Fastest way but can't use '?' or '.' with multi-byte runes
-    resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same as Match to avoid string conversion
-    resultMBR := wildcard.MatchByRune(pattern, str) // Slower than Match but with strict rune comparison (not grapheme cluster)
+    resultM := wildcard.Match(pattern, str) // Fastest: byte-wise `*`, `?`, `.`
+    resultMFB := wildcard.MatchFromByte([]byte(pattern), []byte(str)) // Same semantics as Match on []byte
+    resultMBR := wildcard.MatchByRune(pattern, str) // Rune-wise `*`, `?`, `.` for multi-byte UTF-8
 
 	fmt.Println(str, pattern, resultM, resultMFB, resultMBR)
 }

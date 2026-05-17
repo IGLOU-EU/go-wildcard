@@ -13,8 +13,8 @@ package wildcard
 import "bytes"
 
 // Match returns true if the pattern matches the string s.
-// It uses byte comparison rather than rune or grapheme cluster comparison.
-// For matching complex Unicode, only the "*" wildcard or exact equality is supported.
+// It supports the operators `*` (zero or more bytes), `?` (zero or one byte), and `.` (exactly one byte)
+// using byte-wise comparison. For UTF-8 text where `?` or `.` must match a full rune, use MatchByRune.
 func Match(pattern, s string) bool {
 	if pattern == "" {
 		return s == pattern
@@ -41,7 +41,7 @@ func MatchByRune(pattern, s string) bool {
 }
 
 // MatchFromByte returns true if the pattern matches the byte slice s.
-// Similar to Match but operates on byte slices to avoid conversions/alloc.
+// Same operators and byte-wise semantics as Match, without string conversion.
 func MatchFromByte(pattern, s []byte) bool {
 	if len(pattern) == 0 {
 		return len(s) == 0
