@@ -58,6 +58,7 @@ cpu: AMD Ryzen 7 PRO 6850U with Radeon Graphics
 
 The tested functions are:
 - regexp.MatchString
+- regexp.MatchPreparedString
 - filepath.Match
 - oldMatchSimple `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`
 - oldMatch `From the commit a899be92514ed08aa5271bc3b93320b719ce2114`

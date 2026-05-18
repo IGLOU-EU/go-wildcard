@@ -31,6 +31,31 @@ func BenchmarkRegex(b *testing.B) {
 	}
 }
 
+// BenchmarkRegexPrepared measures matching against a regexp compiled once,
+// ahead of the loop. Unlike BenchmarkRegex — which recompiles the pattern on
+// every call — this isolates the cost of regexp.Regexp.MatchString alone.
+//
+// WARNING: a prepared regex is NOT a fair single-shot comparison. It only pays
+// off when the same pattern is reused many times, because the compilation cost
+// (often the dominant term) is amortised away here. Read this as a best case
+// for regexp, not as an apples-to-apples comparison with wildcard.Match, which
+// does its full work on every call.
+func BenchmarkRegexPrepared(b *testing.B) {
+	for i, t := range TestSet {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
+			re, err := regexp.Compile(t.pattern)
+			if err != nil {
+				b.Skipf("pattern is not a valid regexp: %v", err)
+			}
+
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				re.MatchString(t.input)
+			}
+		})
+	}
+}
+
 func BenchmarkFilepath(b *testing.B) {
 	for i, t := range TestSet {
 		b.Run(fmt.Sprint(i), func(b *testing.B) {
