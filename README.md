@@ -66,6 +66,21 @@ The tested functions are:
 - MatchByRune `From string with rune comparison`
 - MatchFromByte `From byte slice with byte comparison`
 
+<!-- BENCHMARK_TABLE:START -->
+
+| Rank | Benchmark | Average ns/op | Samples |
+| ---: | --- | ---: | ---: |
+| 1 | BenchmarkMatch | 10.83 | 6 |
+| 2 | BenchmarkMatchFromByte | 12.14 | 6 |
+| 3 | BenchmarkMatchByRune | 60.78 | 6 |
+| 4 | BenchmarkRegexPrepared | 86.48 | 4 |
+| 5 | BenchmarkFilepath | 87.90 | 6 |
+| 6 | BenchmarkOldMatch | 97.04 | 6 |
+| 7 | BenchmarkOldMatchSimple | 98.24 | 6 |
+| 8 | BenchmarkRegex | 2261.77 | 6 |
+
+<!-- BENCHMARK_TABLE:END -->
+
 ![time bench](./assets/graph_time.png)
 ![allocs bench](./assets/graph_allocs.png)
 
