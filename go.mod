@@ -1,3 +1,6 @@
+// Deprecated: go-wildcard has moved to gitlab.com/iglou.eu/goulc/wildcard
+// as part of the goulc library bundle. This module is no longer maintained;
+// please migrate.
 module github.com/IGLOU-EU/go-wildcard/v2
 
 go 1.16

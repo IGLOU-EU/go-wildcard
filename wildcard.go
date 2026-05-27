@@ -16,6 +16,10 @@
 //   - '.' matches exactly one character
 //
 // Any other character must match itself.
+//
+// Deprecated: this package has moved to gitlab.com/iglou.eu/goulc/wildcard
+// as part of the goulc library bundle. This repository is no longer
+// maintained; please migrate.
 package wildcard
 
 import "bytes"
@@ -23,6 +27,8 @@ import "bytes"
 // Match reports whether s matches pattern, comparing byte by byte and
 // without allocating. Against multi-byte UTF-8 the operators apply to
 // bytes, not whole characters; use MatchByRune when that matters.
+//
+// Deprecated: use gitlab.com/iglou.eu/goulc/wildcard.Match instead.
 func Match(pattern, s string) bool {
 	if pattern == "" {
 		return s == pattern
@@ -37,6 +43,8 @@ func Match(pattern, s string) bool {
 // MatchByRune reports whether s matches pattern, comparing rune by rune,
 // so the operators apply to whole Unicode code points. Converting pattern
 // and s to runes allocates; prefer Match when byte semantics are enough.
+//
+// Deprecated: use gitlab.com/iglou.eu/goulc/wildcard.MatchByRune instead.
 func MatchByRune(pattern, s string) bool {
 	if pattern == "" {
 		return s == pattern
@@ -50,6 +58,8 @@ func MatchByRune(pattern, s string) bool {
 
 // MatchFromByte is Match for byte slices: it reports whether s matches
 // pattern, with the same byte-wise semantics and without allocation.
+//
+// Deprecated: use gitlab.com/iglou.eu/goulc/wildcard.MatchFromByte instead.
 func MatchFromByte(pattern, s []byte) bool {
 	if len(pattern) == 0 {
 		return len(s) == 0
